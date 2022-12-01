@@ -10,7 +10,7 @@ use std::error::Error;
 use crate::aoc::AOCProblem;
 use aoc::AOCInput;
 
-const YEAR: &str = "2019";  // FIXME
+const YEAR: &str = "2022";
 
 fn main() {
     let args : Vec<String> = env::args().collect();

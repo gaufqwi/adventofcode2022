@@ -1,0 +1,3 @@
+# Advent of Code 2022
+
+My solutions for the [Advent of Code](http://adventofcode.com) 2022. I'm new to Rust so my code will probably not be the most elegant. Neither is my runner; I'm sure there is a better design than importing all the days using a big conditional to select which one to run, but I couldn't come up with it in the time I had to spend on this. I may well end up refactoring this code three times before the month is up, but I'm going to try to stay focused on the puzzles.
