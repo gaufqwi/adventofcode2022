@@ -1,3 +1,5 @@
+use std::str::Lines;
+
 pub trait AOCProblem {
     fn solve (&self, part : &str, input : AOCInput) -> String {
         match part {
@@ -25,5 +27,22 @@ impl AOCInput {
         AOCInput {
             data: data.clone()
         }
+    }
+
+    // Utility methods to return the data in various ways
+
+    // Raw string
+    pub fn raw (&self) -> &str {
+        &self.data
+    }
+
+    // Iterator over lines
+    pub fn as_lines (&self) -> Lines<'_> {
+        self.data.lines()
+    }
+
+    // Vec of numbers
+    pub fn as_numvec (&self) -> Vec<i64> {
+        self.data.lines().map(|x| x.parse::<i64>().unwrap()).collect()
     }
 }

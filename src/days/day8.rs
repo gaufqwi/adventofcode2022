@@ -5,7 +5,7 @@ pub struct Problem();
 
 impl AOCProblem for Problem {
     fn part1(&self, input: AOCInput) -> String {
-        String::from("Part 1 8")
+        String::from("Part 1")
     }
 
     fn part2(&self, input: AOCInput) -> String {
