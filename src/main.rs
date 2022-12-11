@@ -1,6 +1,7 @@
 #![allow(dead_code, unused_variables)]
 
 extern crate reqwest;
+extern crate core;
 
 mod aoc;
 mod days;
