@@ -37,11 +37,29 @@ impl AOCProblem for Problem {
     }
 
     fn part2(&self, input: AOCInput) -> String {
-        String::from("Part 2")
+        let mut p1_i = 1;
+        let mut p2_i = 1;
+
+        let p1 = json!([[2]]);
+        let p2 = json!([[6]]);
+
+        for l in input.as_lines() {
+            if l.len() == 0 {
+                continue;
+            }
+            let j : Value = serde_json::from_str(l).unwrap();
+            if compare(&j, &p1) == Comparison::Right {
+                p1_i += 1;
+            }
+            if compare(&j, &p2) == Comparison:: Right {
+                p2_i += 1;
+            }
+        }
+        (p1_i * (p2_i + 1)).to_string()
     }
 }
 
-fn compare (a: &mut Value, b: &mut Value) -> Comparison {
+fn compare (a: &Value, b: &Value) -> Comparison {
     let mut a_vec = a.as_array().unwrap().into_iter();
     let mut b_vec = b.as_array().unwrap().into_iter();
 
@@ -68,8 +86,7 @@ fn compare (a: &mut Value, b: &mut Value) -> Comparison {
                     },
                     // Array
                     Some(y) => {
-                        let mut ym = y.clone();
-                        let r = compare(&mut json!([x]), &mut ym);
+                        let r = compare(&json!([x]), &y);
                         if r != Comparison::Unknown {
                             return r;
                         }
@@ -80,16 +97,13 @@ fn compare (a: &mut Value, b: &mut Value) -> Comparison {
                 match b_el {
                     None => return Comparison::Wrong,
                     Some(Value::Number(y)) => {
-                        let mut xm = x.clone();
-                        let r = compare(&mut xm, &mut json!([y]));
+                        let r = compare(&x, &json!([y]));
                         if r != Comparison::Unknown {
                             return r;
                         }
                     },
                     Some(y) => {
-                        let mut xm = x.clone();
-                        let mut ym = y.clone();
-                        let r = compare(&mut xm, &mut ym);
+                        let r = compare(&x, &y);
                         if r != Comparison::Unknown {
                             return r;
                         }
